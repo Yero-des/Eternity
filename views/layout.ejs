@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eternity</title>
+
+  <!-- Bootstrap css -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">  
+  <link rel="stylesheet" href="/css/bootstrap-icons.css">  
+
+  <!-- Public css -->
+  <link rel="stylesheet" href="/static/css/styles.css">
+
+</head>
+<body class="bg-dark">  
+  
+  <!-- Navigation -->
+  <ul class="nav nav-tabs pt-4 justify-content-end align-items-end">
+    <li class="nav-item logo">
+      <img src="/static/img/logo.png" alt="Eternity" />
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-dark text-center <% if (page == "index") { %>active<% } %>" aria-current="page" href="/">Inicio</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-dark text-center <% if (page == "about") { %>active<% } %>" href="/nosotros">Nosotros</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-dark text-center <% if (page == "galery") { %>active<% } %>" href="/galeria">Galería</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-dark text-center <% if (page == "products") { %>active<% } %>" href="/productos">Productos</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-dark text-center <% if (page == "chat") { %>active<% } %>" href="/escribenos">Escríbenos</a>
+    </li>
+  </ul>
+
+  <div class="container">
+
+    <!-- Body -->
+    <%- body %> 
+
+  </div>
+  
+  <!-- Footer -->
+  <footer>
+
+  </footer>
+  
+  <!-- Bootstrap js -->
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+
+  <!-- Scripts -->  
+  <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script>
+    $(() => {
+      var socket = io()
+
+      $('#form-chat').submit(() => {
+        console.log(socket)
+        socket.emit('chat', $('#message').val() );
+        $('#message').val('');
+        return false;
+      });
+
+      socket.on('recibido', (object) => {
+        const $li = $('<li>').addClass('item-chat d-flex');
+        const $icon = $('<i>').addClass('bi bi-chat-fill mr-2');
+        const $mensaje = $('<p>').addClass('m-0 fs-6').text(object.txt);
+        const $fecha = $('<p>').addClass('date-item-chat').text(object.date);
+
+        $li.append($icon, $mensaje, $fecha);
+
+        $('#list-messages').append($li);
+        window.scrollTo(0, document.body.scrollHeight);
+      });
+
+    })
+  </script>
+
+</body>
+</html>

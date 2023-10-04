@@ -1,0 +1,13 @@
+<!-- Products -->
+<div class="d-grid mt-4 images-galery-grid">
+  <% for( let i = 9; i > 0; i-- ) { %>
+    <article class="item-product d-flex flex-column justify-content-center">
+      <img src="/static/img/<%- i %>.jpg" alt="Image">
+      <div class="d-flex p-2 justify-content-between">    
+        <p class="text-center text-white m-0">Product <%- i %> </p>
+        <p class="text-center text-white m-0">$ <%- (i * 1000) - i %></p>
+      </div>
+      <button class="btn btn-success"><i class="bi bi-cart"></i></button>
+    </article>  
+  <% } %>
+</div>
