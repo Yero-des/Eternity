@@ -1,0 +1,9 @@
+<!-- Chat -->
+form#form-chat.form-chat-message.row.mt-4.mb-4.justify-content-center(action="#" method="POST")
+  .col-8
+    textarea.form-control#message(cols="30" rows="10")
+  .col-8.mt-4.d-flex.justify-content-end
+    button.btn.btn-danger(type="submit") Enviar mensaje
+
+div.d-flex.flex-column.mt-5.align-items-center
+  ul#list-messages.list-of-messages.text-light

@@ -1,0 +1,10 @@
+<!-- Products -->
+div.d-grid.mt-4.images-galery-grid
+  - for(let i = 9; i > 0; i--)
+    article.item-product.d-flex.flex-column.justify-content-center
+      img(src=`/static/img/${i}.jpg`, alt=`Image ${i}`)
+      div.d-flex.p-2.justify-content-between
+        p.text-center.text-white.m-0 Product #{i}
+        p.text-center.text-white.m-0 $ #{(i * 1000) - i}
+      button.btn.btn-success
+        i.bi.bi-cart

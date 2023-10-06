@@ -6,7 +6,7 @@ const path = require('path');
 const port = 3000;
 const expressLayouts = require('express-ejs-layouts');
 
-app.set('view engine', 'ejs');
+app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, '/views'));
 
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
@@ -45,4 +45,4 @@ io.on('connection', (socket) => {
   })
 })
 
-http.listen(port, () => console.log('listening on port 3000'));
+http.listen(port, () => console.log('http:localhost:3000'));
